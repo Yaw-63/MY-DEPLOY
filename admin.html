@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Admin | RafGodwin Engineering</title>
+<link rel="icon" href="assets/img/favicon-32.png">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/admin.css"></head>
+<body>
+<div id="login" class="login" hidden>
+  <form id="lf" class="lcard">
+    <img src="assets/img/logo.png" alt="RafGodwin Engineering" class="llogo">
+    <h1>Admin sign in</h1>
+    <label for="pw">Password</label>
+    <input id="pw" type="password" autocomplete="current-password" required autofocus>
+    <div class="err" id="lerr" role="alert"></div>
+    <button class="btn" type="submit">Sign in</button>
+  </form>
+</div>
+
+<div id="app" hidden>
+  <header class="top">
+    <div class="brand"><img src="assets/img/logo-mark-light.png" alt=""><span>Raf<b>Godwin</b> Admin</span></div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="overview" class="on">Overview</button>
+      <button data-tab="orders">Orders <i class="pill" id="newc" hidden>0</i></button>
+      <button data-tab="products">Products</button>
+    </nav>
+    <div class="right"><a href="shop.html" target="_blank" rel="noopener">View shop</a><button class="ghost" id="logout">Log out</button></div>
+  </header>
+
+  <main>
+    <section id="t-overview">
+      <h2>Overview</h2>
+      <div class="stats" id="stats"></div>
+      <div class="panel" id="lowbox" hidden><h3>Running low</h3><div id="low"></div></div>
+      <div class="panel"><h3>Latest orders</h3><div id="latest"></div></div>
+    </section>
+
+    <section id="t-orders" hidden>
+      <div class="bar"><h2>Orders</h2>
+        <div class="filters" id="ofilter"></div>
+        <input type="search" id="osearch" placeholder="Search name, phone or order no.">
+      </div>
+      <div id="olist"></div>
+    </section>
+
+    <section id="t-products" hidden>
+      <div class="bar"><h2>Products</h2><button class="btn" id="addp">+ Add product</button></div>
+      <div class="panel nopad"><table class="tbl" id="ptable"></table></div>
+    </section>
+  </main>
+</div>
+
+<div class="modal" id="pmodal" role="dialog" aria-modal="true" hidden>
+  <form class="mcard" id="pf">
+    <div class="mh"><h3 id="pmt">Add product</h3><button type="button" class="x" data-x>&times;</button></div>
+    <div class="mb">
+      <label>Product name *<input name="name" required maxlength="120"></label>
+      <div class="two">
+        <label>Price (GH&cent;) *<input name="price" type="number" step="0.01" min="0" required></label>
+        <label>Stock quantity<input name="stock" type="number" min="0" step="1" placeholder="Leave empty if not tracked"></label>
+      </div>
+      <label>Category<input name="category" list="cats" placeholder="e.g. CCTV Cameras"><datalist id="cats"></datalist></label>
+      <label>Description<textarea name="description" rows="5" maxlength="4000" placeholder="Specs, what is included, warranty..."></textarea></label>
+      <div class="lbl">Photos <small>(first photo is the main one, up to 6)</small></div>
+      <div class="imgs" id="imgs"></div>
+      <label class="upl">+ Add photos<input type="file" id="file" accept="image/jpeg,image/png,image/webp" multiple hidden></label>
+      <label class="chk"><input type="checkbox" name="active" checked> Visible in the shop</label>
+      <div class="err" id="perr" role="alert"></div>
+    </div>
+    <div class="mf"><button type="button" class="ghost" data-x>Cancel</button><button class="btn" type="submit" id="psave">Save product</button></div>
+  </form>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="assets/js/admin.js"></script>
+</body></html>
